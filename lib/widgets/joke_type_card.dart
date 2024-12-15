@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mis/models/jokeType.dart';
+import 'package:mis/models/joke_type.dart';
 
 class JokeTypeCard extends StatelessWidget {
   final JokeType jokeType;

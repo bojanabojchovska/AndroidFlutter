@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/jokeType.dart';
-import '../services/apiService.dart';
+import '../models/joke_type.dart';
+import '../services/api_service.dart';
 
 class Details extends StatefulWidget {
   const Details({super.key});

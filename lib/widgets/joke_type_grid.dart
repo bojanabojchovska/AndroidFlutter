@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mis/models/jokeType.dart';
-import 'package:mis/widgets/JokeTypeCard.dart';
+import 'package:mis/models/joke_type.dart';
+import 'package:mis/widgets/joke_type_card.dart';
 
 class JokeTypeGrid extends StatelessWidget {
   final List<JokeType> jokeTypes;

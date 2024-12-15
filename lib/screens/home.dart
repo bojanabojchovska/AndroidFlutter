@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:mis/models/jokeType.dart';
-import '../services/apiService.dart';
-import '../widgets/jokeTypeGrid.dart';
+import 'package:mis/models/joke_type.dart';
+import '../services/api_service.dart';
+import '../widgets/joke_type_grid.dart';
 import 'package:mis/screens/random_joke.dart'; // Import the Random Joke screen
 
 class Home extends StatefulWidget {
