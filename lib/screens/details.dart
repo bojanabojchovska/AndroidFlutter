@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mis/provider/joke_provider.dart';
+import 'package:provider/provider.dart';
 import '../models/joke_type.dart';
 import '../services/api_service.dart';
 
@@ -17,7 +19,6 @@ class _DetailsState extends State<Details> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Retrieve JokeType argument from navigation
     jokeType = ModalRoute.of(context)?.settings.arguments as JokeType;
     fetchJokes();
   }
@@ -38,6 +39,8 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
+    final favoritesProvider = Provider.of<FavoritesProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(jokeType.type),
@@ -49,6 +52,7 @@ class _DetailsState extends State<Details> {
           : ListView.builder(
         itemCount: jokes.length,
         itemBuilder: (context, index) {
+          final joke = jokes[index];
           return ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.blue,
@@ -57,7 +61,18 @@ class _DetailsState extends State<Details> {
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-            title: Text(jokes[index]),
+            title: Text(joke),
+            trailing: IconButton(
+              icon: Icon(
+                favoritesProvider.isFavorite(joke)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                color: favoritesProvider.isFavorite(joke) ? Colors.red : null,
+              ),
+              onPressed: () {
+                favoritesProvider.toggleFavorite(joke);
+              },
+            ),
           );
         },
       ),

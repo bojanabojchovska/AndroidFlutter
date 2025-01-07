@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mis/models/joke_type.dart';
+import 'package:mis/screens/favorites.dart';
 import '../services/api_service.dart';
 import '../widgets/joke_type_grid.dart';
 import 'package:mis/screens/random_joke.dart'; // Import the Random Joke screen
+// Import the Favorites screen
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -47,18 +49,28 @@ class _HomeState extends State<Home> {
     }
   }
 
+  // Method to navigate to the Favorites screen
+  void goToFavorites() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FavoritesPage(), // Assuming you already implemented FavoritesPage
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent[100],
         title: const Text(
-          "Joke Types- 213089",
+          "Joke Types - 213089",
           style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         actions: [
-          // Make the button prettier with a smiley or custom text
+          // Button for fetching random joke
           TextButton.icon(
             onPressed: fetchRandomJoke,
             icon: const Icon(Icons.sentiment_very_satisfied, color: Colors.white),
@@ -70,6 +82,14 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: JokeTypeGrid(jokeTypes: jokeTypes),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blueAccent[100],
+        child: IconButton(
+          icon: const Icon(Icons.favorite, color: Colors.white),
+          onPressed: goToFavorites, // Navigate to FavoritesPage
+          tooltip: "Go to Favorites",
+        ),
+      ),
     );
   }
 }
